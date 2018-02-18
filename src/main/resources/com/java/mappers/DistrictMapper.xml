@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.DistrictDao">
+
+	<resultMap type="com.java.entity.District" id="districtMap">
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="districtName" property="districtName" jdbcType="VARCHAR"/>
+	</resultMap>
+
+
+
+	<select id="getDistricts" parameterType="java.util.Map" resultMap="districtMap">
+		select id,districtName from t_district
+	</select>
+
+</mapper>

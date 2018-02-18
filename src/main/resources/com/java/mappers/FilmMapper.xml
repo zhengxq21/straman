@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.java.dao.FilmDao">
+	
+	<resultMap type="com.java.entity.Film" id="filmMap">
+		<result column="id" property="id" jdbcType="INTEGER"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="title" property="title" jdbcType="VARCHAR"/>
+		<result column="content" property="content" jdbcType="VARCHAR"/>
+		<result column="imageName" property="imageName" jdbcType="VARCHAR"/>
+		<result column="hot" property="hot" jdbcType="INTEGER"/>
+		<result column="publishDate" property="publishDate" jdbcType="DATE"/>
+		<result column="filmTypeId" property="filmTypeId" jdbcType="INTEGER"/>
+		<result column="districtId" property="districtId" jdbcType="INTEGER"/>
+		<result column="createDate" property="createDate" jdbcType="DATE"/>
+	</resultMap>
+	
+	
+	<insert id="addFilm" parameterType="com.java.entity.Film">
+		insert into t_film(id,name,title,content,imageName,hot,publishDate,filmTypeId,districtId,createDate)
+		 values(NULL,#{name},#{title},#{content},#{imageName},#{hot},#{publishDate},#{filmTypeId},#{districtId},#{createDate})
+	</insert>
+	
+	<update id="updateFilm" parameterType="com.java.entity.Film">
+		update t_film
+		<set>
+			<if test="name!=null and name!=''">
+				name=#{name},
+			</if>
+			<if test="title!=null and title!=''">
+				title=#{title},
+			</if>
+			<if test="content!=null and content!=''">
+				content=#{content},
+			</if>
+			<if test="imageName!=null and imageName!=''">
+				imageName=#{imageName},
+			</if>
+			<if test="hot==0 or hot==1">
+				 hot=#{hot},
+			</if>
+			<if test="publishDate!=null and publishDate!=''">
+				publishDate=#{publishDate},
+			</if>
+			<if test="filmTypeId!=0">
+				filmTypeId=#{filmTypeId},
+			</if>
+			<if test="districtId!=0">
+				districtId=#{districtId},
+			</if>
+			<if test="createDate!=null and createDate!=''">
+				createDate=#{createDate},
+			</if>
+		</set>
+		
+		
+	</update>
+	
+</mapper>
